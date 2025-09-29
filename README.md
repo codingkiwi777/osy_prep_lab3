@@ -21,3 +21,15 @@ kompilace:
 • g++ -fPIC -shared -o libcache.so libcache.cpp
 • g++ -o cache_check cache_check.cpp -L. -lcache
 • export LD_LIBRARY_PATH=.:$LD_LIBRARY_PATH
+
+# Vytvoř testovací soubor
+echo "test obsah" > test.txt
+
+# Vytvoř symbolický odkaz
+ln -s test.txt odkaz.txt
+
+# Testuj jednotlivé funkce
+./cache_check -a test.txt
+./cache_check -s test.txt
+./cache_check -l odkaz.txt
+./cache_check -f test.txt
